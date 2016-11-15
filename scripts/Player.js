@@ -1,8 +1,12 @@
 //Card Constructor
 function Player (id){
     this.player_id = Player.sequentialID();
-    this.player_name = 'Bill';
+    this.player_name;
 }
+
+Player.prototype.SetName = function(name_in){
+    this.player_name = name_in;
+};
 
 Player.sequentialID = (function(){
     let count = 10;

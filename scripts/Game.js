@@ -1,7 +1,8 @@
 //Game Constructor
 function Game (){
-    this.game_id = Game.sequentialID();
+    //this.game_id = Game.sequentialID();
     this.players; //will become array with all players
+    this.deck_draw;
 }
 
 //closure to make unique Game ID's
@@ -19,4 +20,9 @@ Game.prototype.MakePlayers = function (num){
         tempArray[i] = new Player(); //get Player Constructor
     }
     this.players = tempArray;
+};
+
+Game.prototype.MakeDeck = function () {
+    
+    this.deck_draw = new Standard52();
 };

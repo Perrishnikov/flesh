@@ -10,5 +10,9 @@
 // console.log('Player 02 ID: ', player02.player_id);
 let game = new Game();
 game.MakePlayers(2);
-console.log(game.players);
-// game.hello(3);
+game.players[0].SetName('Perry');
+game.players[1].SetName('Bitt');
+game.MakeDeck();
+
+console.table(game.players);
+console.table(game.deck_draw);
