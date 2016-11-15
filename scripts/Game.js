@@ -13,16 +13,32 @@ Game.sequentialID = (function(){
     };
 }());
 
-//populate this.players with the set number
-Game.prototype.MakePlayers = function (num){
+//populate Players array
+Game.prototype.MakePlayers = function(num){
     let tempArray = [];
     for(let i = 0; i < num; i++){
-        tempArray[i] = new Player(); //get Player Constructor
+        tempArray[i] = new Player(); //get Player.js Constructor
     }
     this.players = tempArray;
 };
 
-Game.prototype.MakeDeck = function () {
-    
-    this.deck_draw = new Standard52();
+Game.prototype.MakeDeck = function() {
+    this.deck_draw = new Standard52(); //get Standard52 from Card.js
+};
+
+Game.prototype.ShuffleCards = function(){
+    //take all discards (if any), out them in shuffle array, return new deck_draw
+};
+
+Game.prototype.DrawCardsSinglePlayer = function(num){
+    //call this for each player ie. player[0].hand = Game.DrawCards().call();
+    let cardsRemaining = game.deck_draw.length; //Game, not THIS
+    let cardsNeeded = num;
+    let newCards = ['hello'];
+    console.log('this: ',this);
+    this.player_hand = newCards;
+};
+
+Game.prototype.DrawCardsAllPlayers = function(){
+//foreach player...
 };

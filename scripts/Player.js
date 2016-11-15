@@ -2,6 +2,7 @@
 function Player (id){
     this.player_id = Player.sequentialID();
     this.player_name;
+    this.player_hand = [];
 }
 
 Player.prototype.SetName = function(name_in){
