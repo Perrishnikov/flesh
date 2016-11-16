@@ -1,8 +1,9 @@
 //Game Constructor
 function Game (){
     //this.game_id = Game.sequentialID();
-    this.players; //will become array with all players
-    this.deck_draw;
+    this.players = []; //will become array with all players
+    this.deck_draw = [];
+    this.deck_discard = [];
 }
 
 //closure to make unique Game ID's
@@ -26,19 +27,48 @@ Game.prototype.MakeDeck = function() {
     this.deck_draw = new Standard52(); //get Standard52 from Card.js
 };
 
-Game.prototype.ShuffleCards = function(){
+Game.prototype.ShuffleCards = function(deckToShuffle){
     //take all discards (if any), out them in shuffle array, return new deck_draw
+    console.warn('Need to reshuffle');
 };
 
-Game.prototype.DrawCardsSinglePlayer = function(num){
-    //call this for each player ie. player[0].hand = Game.DrawCards().call();
-    let cardsRemaining = game.deck_draw.length; //Game, not THIS
-    let cardsNeeded = num;
-    let newCards = ['hello'];
-    console.log('this: ',this);
-    this.player_hand = newCards;
+Game.prototype.DrawCards_each = function(toWhom, amount, fromWhere){
+    let cardsRemaining = fromWhere.length;
+    let cardsNeeded = amount;
+    let startDeck = fromWhere.slice(); //get current card array in the deck fromWhere
+    const player = toWhom;
+
+    let newHand = this.IncreaseHand(cardsNeeded, cardsRemaining, startDeck);
+    player.player_hand = newHand; //need newHand var to pass into DecreaseDeck
+    // let newDeal = this.DecreaseDeck(newHand, startDeck);
+    // this.deck_draw = this.DecreaseDeck(newHand, startDeck);
+
+    this.deck_draw = startDeck; //Super side effect
 };
 
-Game.prototype.DrawCardsAllPlayers = function(){
+Game.prototype.IncreaseHand = function(needed, remaining, deck){
+    let tempArray = [];
+    //for each card that is needed...
+    for(let i = 0; i < needed; i++){
+        //and if the number needed is available...
+        if(needed <= remaining){
+            //grab the first card in the deck array, push it to temp. Attempt to separate draw IncreaseHand and DecreaseDeck
+            // tempArray.push(deck[i]);
+
+            //Super side effect to update deck. Fix this later
+            tempArray.push(deck.splice(0,1)[0]); //splice a card out and side effect starting Deck one less card.
+        } else {
+            this.ShuffleCards(deck);
+            //then keep drawing
+            continue;
+        }
+    }
+    return tempArray;
+};
+
+Game.prototype.DecreaseDeck = function(cards, deck){
+};
+
+Game.prototype.DrawCards_all = function(){
 //foreach player...
 };
