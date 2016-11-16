@@ -30,6 +30,7 @@ Game.prototype.MakeDeck = function() {
 Game.prototype.ShuffleCards = function(deckToShuffle){
     //take all discards (if any), out them in shuffle array, return new deck_draw
     console.warn('Need to reshuffle');
+    
 };
 
 Game.prototype.DrawCards_each = function(toWhom, amount, fromWhere){
