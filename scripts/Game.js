@@ -1,18 +1,12 @@
 //Game Constructor
 function Game (){
-    //this.game_id = Game.sequentialID();
+    //STATE
+    this.game_id = Game.id++;
     this.players = []; //will become array with all players
-    this.deck_draw = [];
-    this.deck_discard = [];
+    this.deck_common_draw = [];
+    this.deck_common_discard = [];
 }
-
-//closure to make unique Game ID's
-Game.sequentialID = (function(){
-    let count = 10;
-    return function () {
-        return count++;
-    };
-}());
+Game.id = 1;
 
 //populate Players array
 Game.prototype.MakePlayers = function(num){
@@ -30,7 +24,7 @@ Game.prototype.MakeDeck = function() {
 Game.prototype.ShuffleCards = function(deckToShuffle){
     //take all discards (if any), out them in shuffle array, return new deck_draw
     console.warn('Need to reshuffle');
-    
+
 };
 
 Game.prototype.DrawCards_each = function(toWhom, amount, fromWhere){
@@ -70,6 +64,16 @@ Game.prototype.IncreaseHand = function(needed, remaining, deck){
 Game.prototype.DecreaseDeck = function(cards, deck){
 };
 
+Game.prototype.getFromDeck = function(from){
+    const startDeck = fromWhere.slice(); //get current card array in the deck fromWhere
+};
+
 Game.prototype.DrawCards_all = function(){
 //foreach player...
+//adding cards to array will be splice both arrays. Merge/join (ADD), replace (FROM)
+
+    game.players.map( player => {
+        console.log(player);
+    });
+
 };

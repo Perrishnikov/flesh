@@ -1,22 +1,12 @@
 //Card Constructor
-function Card (id){
-    this.card_id = Card.sequentialID();
-    //this.random_num = Card.RandomNum();
+function Card (){
+    this.card_id = Card.id ++;
 }
+//gives every card a sequential ID
+//might could make a set ID as well
+Card.id = 1;
 
-// Card.RandomNum = function(){
-//     const min = Math.ceil(1);
-//     const max = Math.floor(10);
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-// };
-
-Card.sequentialID = (function(){
-    let count = 1;
-    return function () {
-        return count++;
-    };
-}());
-
+//parameters for a standard 52 card deck
 function Standard52 (){
     const cardSet = {set: 'standard 52'};
 
@@ -48,7 +38,7 @@ function Standard52 (){
         for (let iii = 0; iii < cardValue.length; iii++) {
             let tempCard = new Card();
 
-                //merge all properties into tempCard
+            //merge all properties into a new Card (tempCard)
             tempArray.push(Object.assign( tempCard, cardSet, cardSuits[ii], cardValue[iii] ));
         }
     }
